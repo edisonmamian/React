@@ -2,7 +2,12 @@
 import React from 'react';
 
 const person = (props) => {
-  return <p> Hola, soy {props.name} y tengo {props.age} años!! </p>
+  return (
+    <div>
+      <p> Hola, soy {props.name} y tengo {props.age} años!! </p>
+      <p> {props.children} </p>
+    </div>
+  )
 }
 
 export default person;
