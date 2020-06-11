@@ -4,7 +4,7 @@ import React from 'react';
 const person = (props) => {
   return (
     <div>
-      <p> Hola, soy {props.name} y tengo {props.age} años!! </p>
+      <p onClick={props.click}> Hola, soy {props.name} y tengo {props.age} años!! </p>
       <p> {props.children} </p>
     </div>
   )
