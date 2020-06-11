@@ -4,13 +4,21 @@ import Person from './Person/Person';
 
 
 class App extends Component {
+  state = {
+    persons: [
+      {name: 'Felipe', age: 25},
+      {name: 'Camila', age: 25},
+      {name: 'Luisa', age: 18}
+    ]
+  }
   render() {
     return (
       <div className="App">
         <h1> Mi primer cambio </h1>
-        <Person name="Felipe" age="25">Mi hobbie: Trotar</Person>
-        <Person name="Camila" age="25"/>
-        <Person name="Luisa" age="18"/>
+        <button>Cambiar nombre</button>
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}>Mi hobbie: Trotar</Person>
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}/>
+        <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
       </div>
     );
     //return React.createElement(
