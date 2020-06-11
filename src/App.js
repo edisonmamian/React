@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import './Person/Person.css';
 
 
 class App extends Component {
@@ -56,7 +57,7 @@ class App extends Component {
         <Person
           name={this.state.persons[2].name}
           age={this.state.persons[2].age}
-          click={this.switchNameHandler.bind(this, 'Stephany')}          
+          click={this.switchNameHandler.bind(this, 'Stephany')}
         />
       </div>
     );
