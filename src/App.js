@@ -7,9 +7,9 @@ import Person from './Person/Person';
 class App extends Component {
   state = {
     persons: [
-      {name: 'Felipe', age: 25},
-      {name: 'Camila', age: 25},
-      {name: 'Luisa', age: 18}
+      {id: 'asfs1', name: 'Felipe', age: 25},
+      {id: 'essdas6', name: 'Camila', age: 25},
+      {id: 'ascerad2', name: 'Luisa', age: 18}
     ],
     showPersons: false
   }
@@ -25,7 +25,10 @@ class App extends Component {
   }
 
   deletePersonHandler = (personIndex) => {
-    const persons = this.state.persons;
+    //crea una copia y no pasa la referencia
+    //const persons = this.state.persons.slice();
+    //La forma actual mas comun de hacer el slice
+    const persons = [...this.state.persons];
     //Elimina un elemento de la lista en el indice entregado
     persons.splice(personIndex, 1);
     this.setState({persons: persons});
@@ -53,7 +56,8 @@ class App extends Component {
             return <Person
               click={() => this.deletePersonHandler(index)}
               name={person.name}
-              age={person.age} />
+              age={person.age}
+              key={person.id} />
           })}
         </div>
       );
