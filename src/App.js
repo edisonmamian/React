@@ -36,12 +36,43 @@ class App extends Component {
   }
 
   togglePersonsHandler = () => {
+    //Guarda una copia del valor de showPersons
+    const doesShow = this.state.showPersons;
+    //Cambia showPersons por la negacion de doesShow
     this.setState({
-      showPersons: true
+      showPersons: !doesShow
     });
   }
 
   render() {
+
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          <Person
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+          >
+            Mi hobbie: Trotar
+          </Person>
+          <Person
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+            change={this.nameChangeHandler}
+          />
+          <Person
+            name={this.state.persons[2].name}
+            age={this.state.persons[2].age}
+            click={this.switchNameHandler.bind(this, 'Stephany')}
+          />
+        </div>
+      );
+    } else {
+
+    }
+
     return (
       <div className="App">
         <h1> Mi primer cambio </h1>
@@ -50,26 +81,9 @@ class App extends Component {
         >
           Cambiar nombre
         </button>
-        {this.state.showPersons ?
-          <div>
-            <Person
-              name={this.state.persons[0].name}
-              age={this.state.persons[0].age}
-            >
-              Mi hobbie: Trotar
-            </Person>
-            <Person
-              name={this.state.persons[1].name}
-              age={this.state.persons[1].age}
-              change={this.nameChangeHandler}
-            />
-            <Person
-              name={this.state.persons[2].name}
-              age={this.state.persons[2].age}
-              click={this.switchNameHandler.bind(this, 'Stephany')}
-            />
-          </div> : null
-        }
+
+        {persons}
+
       </div>
     );
     //return React.createElement(
