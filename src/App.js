@@ -14,17 +14,6 @@ class App extends Component {
     showPersons: false
   }
 
-  switchNameHandler = (newName) => {
-    //this.state.persons[2].name = 'Nicole';
-    this.setState({
-      persons: [
-        {name: 'Felipe', age: 25},
-        {name: 'Camila', age: 25},
-        {name: newName, age: 18}
-      ]
-    });
-  }
-
   nameChangeHandler = (event) => {
     this.setState({
       persons: [
@@ -33,6 +22,13 @@ class App extends Component {
         {name: 'Nicole', age: 18}
       ]
     });
+  }
+
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons;
+    //Elimina un elemento de la lista en el indice entregado
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons});
   }
 
   togglePersonsHandler = () => {
@@ -49,18 +45,18 @@ class App extends Component {
     let persons = null;
 
     if (this.state.showPersons) {
+      // Mostrar datos de una lista dinamicamente
       persons = (
         <div>
-          // Mostrar datos de una lista dinamicamente
-          {this.state.persons.map(person => {
+
+          {this.state.persons.map((person, index) => {
             return <Person
+              click={() => this.deletePersonHandler(index)}
               name={person.name}
               age={person.age} />
           })}
         </div>
       );
-    } else {
-
     }
 
     return (
