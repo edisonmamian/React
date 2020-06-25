@@ -14,13 +14,31 @@ class App extends Component {
     showPersons: false
   }
 
-  nameChangeHandler = (event) => {
+  nameChangeHandler = (event, id) => {
+    //Encuentra el indice dentro de la lista de la person con id igual al
+    //parametro que fue entregado
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+
+    //Obtiene la información de la persona con el indice encontrado en el
+    //paso anterior
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+
+    //Actualiza el nombre de la persona obtenida en el paso anterior
+    person.name = event.target.value;
+
+    //Crea una copia de la lista original de personas
+    const persons = [...this.state.persons];
+
+    //en la copia de la lista de personas actualiza la persona a la que se le
+    //cambio el nombre
+    persons[personIndex] = person
+
     this.setState({
-      persons: [
-        {name: 'Felipe', age: 25},
-        {name: event.target.value, age: 25},
-        {name: 'Nicole', age: 18}
-      ]
+      persons: persons
     });
   }
 
@@ -57,7 +75,9 @@ class App extends Component {
               click={() => this.deletePersonHandler(index)}
               name={person.name}
               age={person.age}
-              key={person.id} />
+              key={person.id}
+              change={(event) => this.nameChangeHandler(event, person.id)}
+              />
           })}
         </div>
       );
